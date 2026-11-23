@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Airbnb & Short-Term Rental Profit, Break-Even & ROI Calculator (2026)</title>
+  <meta name="description" content="Calculate real monthly & annual Airbnb, Booking.com and VRBO net profit, OTA commission impact, break-even nightly rate, RevPAR and Cash-on-Cash ROI instantly.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://simkena2026-bot.github.io/sheetcraft-tools/airbnb-profit-calculator/">
+  <link rel="alternate" hreflang="it" href="https://simkena2026-bot.github.io/sheetcraft-tools/calcolatore-affitti-brevi/">
+  <meta property="og:title" content="Free Airbnb & Short-Term Rental Profit, Break-Even & ROI Calculator (2026)">
+  <meta property="og:description" content="Calculate real monthly & annual Airbnb, Booking.com and VRBO net profit, OTA commission impact, break-even nightly rate, RevPAR and Cash-on-Cash ROI instantly.">
+  <meta property="og:type" content="website">
+  <style>
+:root {
+  --bg: #0b1120;
+  --surface: #111827;
+  --card: #1e293b;
+  --border: #334155;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --primary: #10b981;
+  --primary-dark: #059669;
+  --indigo: #6366f1;
+  --warn: #f59e0b;
+  --danger: #ef4444;
+  --radius: 14px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+  background: radial-gradient(circle at top right, #1e293b 0%, var(--bg) 52%);
+  color: var(--text);
+  line-height: 1.55;
+  min-height: 100vh;
+}
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 24px 20px 64px; }
+header.nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 0 28px; border-bottom: 1px solid rgba(148,163,184,0.16);
+  flex-wrap: wrap; gap: 12px;
+}
+.brand { font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em; display: flex; align-items: center; gap: 10px; }
+.brand-dot { width: 12px; height: 12px; border-radius: 4px; background: var(--accent, var(--primary)); display: inline-block; }
+.nav-links { display: flex; gap: 14px; flex-wrap: wrap; font-size: 0.9rem; color: var(--muted); }
+.nav-links a:hover { color: var(--text); }
+.hero { padding: 34px 0 24px; }
+.pill {
+  display: inline-block; padding: 5px 12px; border-radius: 999px; font-size: 0.78rem; font-weight: 700;
+  background: rgba(16,185,129,0.14); color: var(--accent, var(--primary)); border: 1px solid rgba(16,185,129,0.35);
+  margin-bottom: 12px; letter-spacing: 0.03em; text-transform: uppercase;
+}
+h1 { font-size: clamp(1.75rem, 3.6vw, 2.7rem); line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 12px; }
+.lead { color: var(--muted); font-size: 1.05rem; max-width: 740px; }
+.grid-2 { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 24px; margin-top: 24px; }
+@media (max-width: 860px) { .grid-2 { grid-template-columns: 1fr; } }
+.card {
+  background: rgba(30, 41, 59, 0.78); backdrop-filter: blur(8px);
+  border: 1px solid var(--border); border-radius: var(--radius); padding: 22px;
+}
+.card h2 { font-size: 1.08rem; margin-bottom: 16px; color: #e2e8f0; display: flex; justify-content: space-between; align-items: center; }
+.field { margin-bottom: 14px; }
+.field label { display: flex; justify-content: space-between; font-size: 0.88rem; color: #cbd5e1; margin-bottom: 5px; font-weight: 600; }
+.field .hint { font-size: 0.78rem; color: var(--muted); font-weight: 400; }
+input[type="number"], select {
+  width: 100%; background: #0f172a; color: var(--text); border: 1px solid var(--border);
+  border-radius: 9px; padding: 10px 12px; font-size: 0.98rem; font-weight: 600;
+}
+input[type="number"]:focus, select:focus { outline: none; border-color: var(--accent, var(--primary)); }
+input[type="range"] { width: 100%; accent-color: var(--accent, var(--primary)); margin-top: 6px; cursor: pointer; }
+.preset-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.preset-btn {
+  background: #0f172a; color: #cbd5e1; border: 1px solid var(--border); border-radius: 8px;
+  padding: 6px 11px; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: 0.15s;
+}
+.preset-btn:hover, .preset-btn.active { border-color: var(--accent, var(--primary)); color: #fff; background: rgba(16,185,129,0.16); }
+.kpi-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-bottom: 18px; }
+.kpi {
+  background: #0f172a; border: 1px solid var(--border); border-radius: 11px; padding: 14px;
+  border-top: 3px solid var(--accent, var(--primary));
+}
+.kpi.warn { border-top-color: var(--warn); }
+.kpi.danger { border-top-color: var(--danger); }
+.kpi .lbl { font-size: 0.74rem; color: var(--muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.04em; }
+.kpi .val { font-size: 1.55rem; font-weight: 800; margin-top: 4px; letter-spacing: -0.02em; }
+.kpi .sub { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+.bar-wrap { margin: 16px 0; }
+.bar-track { display: flex; height: 18px; border-radius: 999px; overflow: hidden; background: #0f172a; border: 1px solid var(--border); }
+.bar-seg { height: 100%; transition: width 0.25s ease; }
+.legend { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 8px; font-size: 0.8rem; color: #cbd5e1; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.dot { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+.breakdown { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 0.9rem; }
+.breakdown td { padding: 8px 4px; border-bottom: 1px solid rgba(148,163,184,0.14); }
+.breakdown td:last-child { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+.cta-box {
+  margin-top: 26px; background: linear-gradient(135deg, rgba(16,185,129,0.18), rgba(15,23,42,0.95));
+  border: 1px solid var(--accent, var(--primary)); border-radius: var(--radius); padding: 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+}
+.cta-box h3 { font-size: 1.25rem; margin-bottom: 6px; }
+.cta-box p { color: #cbd5e1; font-size: 0.94rem; max-width: 640px; }
+.cta-btn {
+  display: inline-block; background: var(--accent, var(--primary)); color: #052e16;
+  font-weight: 800; padding: 13px 22px; border-radius: 10px; font-size: 0.96rem;
+  white-space: nowrap; transition: transform 0.15s;
+}
+.cta-btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
+.cta-btn.indigo-btn { background: var(--indigo); color: #fff; }
+.faq { margin-top: 38px; }
+.faq h2 { font-size: 1.35rem; margin-bottom: 14px; }
+details {
+  background: rgba(30,41,59,0.65); border: 1px solid var(--border); border-radius: 10px;
+  padding: 14px 16px; margin-bottom: 10px;
+}
+summary { font-weight: 700; cursor: pointer; }
+details p { color: #cbd5e1; margin-top: 8px; font-size: 0.92rem; }
+footer {
+  margin-top: 48px; padding-top: 20px; border-top: 1px solid rgba(148,163,184,0.16);
+  color: var(--muted); font-size: 0.84rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+}
+.hub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin-top: 24px; }
+.hub-card {
+  background: rgba(30,41,59,0.8); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 22px; display: flex; flex-direction: column; justify-content: space-between; gap: 14px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.hub-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+.hub-tag { font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--primary); }
+.hub-card h3 { font-size: 1.15rem; margin-top: 6px; }
+.hub-card p { font-size: 0.9rem; color: var(--muted); }
+.hub-go { font-weight: 700; font-size: 0.9rem; color: #34d399; }
+.alert-bar { margin-top: 10px; padding: 10px 12px; border-radius: 9px; font-size: 0.85rem; font-weight: 600; background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.35); color: #a7f3d0; }
+.alert-bar.warn { background: rgba(245,158,11,0.14); border-color: rgba(245,158,11,0.45); color: #fde68a; }
+.alert-bar.danger { background: rgba(239,68,68,0.15); border-color: rgba(239,68,68,0.5); color: #fecaca; }
+ :root { --accent: #10b981; }</style>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Free Airbnb & Short-Term Rental Profit, Break-Even & ROI Calculator (2026)", "url": "https://simkena2026-bot.github.io/sheetcraft-tools/airbnb-profit-calculator/", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How is Break-Even Nightly Rate calculated?", "acceptedAnswer": {"@type": "Answer", "text": "Break-even nightly rate divides your total monthly fixed + uncovered turnover costs by your expected booked nights, adjusted for OTA platform commission percentages so you never list below your true cost floor."}}, {"@type": "Question", "name": "What is a healthy Short-Term Rental net profit margin?", "acceptedAnswer": {"@type": "Answer", "text": "Most well-run Airbnb and vacation rentals target 25% to 40% post-tax net profit margin depending on whether the property is owned, mortgaged, or operated via rental arbitrage."}}, {"@type": "Question", "name": "Does this calculator account for Airbnb vs. Booking.com fees?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — use the one-click presets for Airbnb Host-Only (15%), Airbnb Split-Fee (3%), Booking.com (17%), or Direct Bookings (0%) to see instant margin impact."}}]}]}</script>
+</head>
+<body>
+  <div class="wrap">
+    
+    <header class="nav">
+      <a class="brand" href="../index.html"><span class="brand-dot"></span>SheetCraft Studio</a>
+      <nav class="nav-links">
+        <a href="../airbnb-profit-calculator/">Airbnb Calc (EN)</a>
+        <a href="../calcolatore-affitti-brevi/">Affitti Brevi (IT)</a>
+        <a href="../freelance-tax-profit-calculator/">Freelance Calc (EN)</a>
+        <a href="../calcolatore-regime-forfettario/">Forfettario (IT)</a>
+      </nav>
+    </header>
+    
+    
+        <section class="hero">
+          <span class="pill">Free Tool • Zero Signup • Instant Math</span>
+          <h1>Airbnb &amp; Short-Term Rental Profit Calculator</h1>
+          <p class="lead">Model your real monthly cashflow, OTA platform fees, tax reserve, <strong>break-even nightly rate</strong>, RevPAR, and <strong>Cash-on-Cash ROI</strong> in seconds.</p>
+        </section>
+        <div class="grid-2">
+          <div class="card">
+            <h2>1. Property &amp; Pricing Inputs</h2>
+            
+        <div class="preset-row">
+          <button class="preset-btn active" type="button" onclick="applyPreset(15, 22, this)">Airbnb Host-Only (15%)</button>
+          <button class="preset-btn" type="button" onclick="applyPreset(3, 22, this)">Airbnb Split-Fee (3%)</button>
+          <button class="preset-btn" type="button" onclick="applyPreset(17, 22, this)">Booking.com (17%)</button>
+          <button class="preset-btn" type="button" onclick="applyPreset(0, 22, this)">Direct Booking (0%)</button>
+        </div>
+        
+            <div class="field"><label>Average Nightly Rate / ADR ($) <span class="hint" id="lbl_adr"></span></label>
+              <input type="number" id="adr" value="175" min="10" max="5000" step="5">
+              <input type="range" id="adr_r" value="175" min="40" max="600" step="5">
+            </div>
+            <div class="field"><label>Booked Nights per Month <span class="hint" id="lbl_occ"></span></label>
+              <input type="number" id="nights" value="19" min="1" max="30" step="1">
+              <input type="range" id="nights_r" value="19" min="1" max="30" step="1">
+            </div>
+            <div class="field"><label>Monthly Fixed Costs ($) <span class="hint">Rent/Mortgage + Utilities + Software</span></label>
+              <input type="number" id="fixed" value="1750" min="0" max="30000" step="25">
+            </div>
+            <div class="field"><label>OTA Platform Commission (%) <span class="hint">Airbnb 3–15% • Booking 15–18%</span></label>
+              <input type="number" id="ota" value="15" min="0" max="40" step="0.5">
+            </div>
+            <div class="field"><label>Est. Income Tax Rate (% of Profit) <span class="hint">Marginal tax reserve</span></label>
+              <input type="number" id="tax" value="22" min="0" max="55" step="1">
+            </div>
+            <div class="field"><label>Uncovered Cleaning / Turnover Cost ($/mo) <span class="hint">Host cost above guest fee</span></label>
+              <input type="number" id="clean" value="120" min="0" max="5000" step="10">
+            </div>
+            <div class="field"><label>Initial Setup / Down Payment ($) <span class="hint">For Cash-on-Cash ROI</span></label>
+              <input type="number" id="invest" value="22000" min="0" max="1000000" step="500">
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>2. Real Monthly &amp; Annual Profit Breakdown</h2>
+            <div class="kpi-grid">
+              <div class="kpi"><div class="lbl">Monthly Net Profit</div><div class="val" id="out_net_mo">—</div><div class="sub" id="out_margin">—</div></div>
+              <div class="kpi"><div class="lbl">Annual Net Profit</div><div class="val" id="out_net_yr">—</div><div class="sub" id="out_roi">—</div></div>
+              <div class="kpi warn"><div class="lbl">Est. Tax Reserve / Mo</div><div class="val" id="out_tax_mo">—</div><div class="sub">Recommended monthly set-aside</div></div>
+              <div class="kpi"><div class="lbl">Break-Even Rate / Night</div><div class="val" id="out_be">—</div><div class="sub">Minimum zero-loss price floor</div></div>
+            </div>
+            <div class="bar-wrap">
+              <div class="bar-track">
+                <div class="bar-seg" id="seg_net" style="background:#10b981;"></div>
+                <div class="bar-seg" id="seg_tax" style="background:#f59e0b;"></div>
+                <div class="bar-seg" id="seg_ota" style="background:#38bdf8;"></div>
+                <div class="bar-seg" id="seg_cost" style="background:#64748b;"></div>
+              </div>
+              <div class="legend">
+                <span><i class="dot" style="background:#10b981"></i>Net Profit</span>
+                <span><i class="dot" style="background:#f59e0b"></i>Tax Reserve</span>
+                <span><i class="dot" style="background:#38bdf8"></i>OTA Fees</span>
+                <span><i class="dot" style="background:#64748b"></i>Fixed &amp; Cleaning</span>
+              </div>
+            </div>
+            <table class="breakdown">
+              <tr><td>Monthly Gross Revenue</td><td id="t_gross">—</td></tr>
+              <tr><td>OTA Commissions</td><td id="t_ota">—</td></tr>
+              <tr><td>Fixed Costs + Uncovered Cleaning</td><td id="t_costs">—</td></tr>
+              <tr><td>Estimated Tax Reserve</td><td id="t_tax">—</td></tr>
+              <tr><td><strong>True Monthly Net Profit</strong></td><td id="t_net">—</td></tr>
+              <tr><td>RevPAR (Rev per Available Night)</td><td id="t_revpar">—</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <section class="cta-box">
+          <div>
+            <h3>Track Up to 10 Properties All Year? Upgrade to STR Profit OS Pro</h3>
+            <p>8 interconnected Excel &amp; Google Sheets tabs: Executive Dashboard with charts, Bookings &amp; Expenses logs, 12-Month P&amp;L, Property ROI Scorecard &amp; 5×5 Pricing Sensitivity Matrix. One-time payment, zero subscriptions.</p>
+          </div>
+          <a class="cta-btn" href="https://sengir.gumroad.com/l/str-profit-os-en" target="_blank" rel="noopener">Get STR Profit OS Pro ($19) →</a>
+        </section>
+
+        <section class="faq">
+          <h2>Frequently Asked Questions</h2>
+          <details><summary>How is Break-Even Nightly Rate calculated?</summary><p>Break-even nightly rate divides your total monthly fixed + uncovered turnover costs by your expected booked nights, adjusted for OTA platform commission percentages so you never list below your true cost floor.</p></details><details><summary>What is a healthy Short-Term Rental net profit margin?</summary><p>Most well-run Airbnb and vacation rentals target 25% to 40% post-tax net profit margin depending on whether the property is owned, mortgaged, or operated via rental arbitrage.</p></details><details><summary>Does this calculator account for Airbnb vs. Booking.com fees?</summary><p>Yes — use the one-click presets for Airbnb Host-Only (15%), Airbnb Split-Fee (3%), Booking.com (17%), or Direct Bookings (0%) to see instant margin impact.</p></details>
+        </section>
+        
+    <footer>
+      <span>© 2026 SheetCraft Studio — Free Client-Side Financial Calculators</span>
+      <span>Informational tool only — not formal tax or accounting advice.</span>
+    </footer>
+  </div>
+  <script>
+    const IS_IT = false;
+    const CURR = '$';
+    const fmt = n => (n < 0 ? '-' : '') + CURR + Math.round(Math.abs(n)).toLocaleString(IS_IT ? 'it-IT' : 'en-US');
+    const el = id => document.getElementById(id);
+
+    function sync(numId, rngId) {
+      el(numId).addEventListener('input', () => { el(rngId).value = el(numId).value; calc(); });
+      el(rngId).addEventListener('input', () => { el(numId).value = el(rngId).value; calc(); });
+    }
+    sync('adr', 'adr_r');
+    sync('nights', 'nights_r');
+    ['fixed', 'ota', 'tax', 'clean', 'invest'].forEach(id => el(id).addEventListener('input', calc));
+
+    function applyPreset(otaVal, taxVal, btn) {
+      el('ota').value = otaVal;
+      el('tax').value = taxVal;
+      document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      calc();
+    }
+
+    function calc() {
+      const adr = Math.max(0, +el('adr').value || 0);
+      const nights = Math.max(1, Math.min(30, +el('nights').value || 1));
+      const fixed = Math.max(0, +el('fixed').value || 0);
+      const ota = Math.max(0, Math.min(80, +el('ota').value || 0)) / 100;
+      const tax = Math.max(0, Math.min(70, +el('tax').value || 0)) / 100;
+      const clean = Math.max(0, +el('clean').value || 0);
+      const invest = Math.max(0, +el('invest').value || 0);
+
+      const gross = adr * nights;
+      const otaAmt = gross * ota;
+      const costs = fixed + clean;
+      const preTax = gross - otaAmt - costs;
+      const taxAmt = IS_IT ? Math.max(0, gross * tax) : Math.max(0, preTax * tax);
+      const netMo = preTax - taxAmt;
+      const netYr = netMo * 12;
+      const margin = gross > 0 ? (netMo / gross) * 100 : 0;
+      const roi = invest > 0 ? (netYr / invest) * 100 : 0;
+      const denom = IS_IT ? (1 - ota - tax) : (1 - ota);
+      const beRate = denom > 0 ? costs / (nights * denom) : 0;
+      const revpar = gross / 30;
+
+      el('lbl_adr').textContent = fmt(adr) + (IS_IT ? '/notte' : '/night');
+      el('lbl_occ').textContent = Math.round((nights / 30) * 100) + '% ' + (IS_IT ? 'occupazione' : 'occupancy');
+      el('out_net_mo').textContent = fmt(netMo);
+      el('out_net_mo').style.color = netMo >= 0 ? '#34d399' : '#f87171';
+      el('out_margin').textContent = margin.toFixed(1) + '% ' + (IS_IT ? 'margine netto' : 'net margin');
+      el('out_net_yr').textContent = fmt(netYr);
+      el('out_roi').textContent = invest > 0 ? (roi.toFixed(1) + '% Cash-on-Cash ROI') : '—';
+      el('out_tax_mo').textContent = fmt(taxAmt);
+      el('out_be').textContent = fmt(beRate) + (IS_IT ? '/notte' : '/nt');
+
+      el('t_gross').textContent = fmt(gross);
+      el('t_ota').textContent = '-' + fmt(otaAmt);
+      el('t_costs').textContent = '-' + fmt(costs);
+      el('t_tax').textContent = '-' + fmt(taxAmt);
+      el('t_net').textContent = fmt(netMo);
+      el('t_revpar').textContent = fmt(revpar);
+
+      const totalBar = Math.max(gross, otaAmt + costs + taxAmt, 1);
+      el('seg_net').style.width = Math.max(0, (netMo / totalBar) * 100) + '%';
+      el('seg_tax').style.width = ((taxAmt / totalBar) * 100) + '%';
+      el('seg_ota').style.width = ((otaAmt / totalBar) * 100) + '%';
+      el('seg_cost').style.width = ((costs / totalBar) * 100) + '%';
+    }
+    calc();
+    </script>
+</body>
+</html>

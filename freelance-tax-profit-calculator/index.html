@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Freelance Tax Reserve, Take-Home Pay & Hourly Rate Calculator (2026)</title>
+  <meta name="description" content="Calculate your freelance quarterly tax set-aside, true take-home pay, and minimum hourly/day rate based on target income, billable utilization, overhead, and taxes.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://simkena2026-bot.github.io/sheetcraft-tools/freelance-tax-profit-calculator/">
+  <link rel="alternate" hreflang="it" href="https://simkena2026-bot.github.io/sheetcraft-tools/calcolatore-regime-forfettario/">
+  <meta property="og:title" content="Free Freelance Tax Reserve, Take-Home Pay & Hourly Rate Calculator (2026)">
+  <meta property="og:description" content="Calculate your freelance quarterly tax set-aside, true take-home pay, and minimum hourly/day rate based on target income, billable utilization, overhead, and taxes.">
+  <meta property="og:type" content="website">
+  <style>
+:root {
+  --bg: #0b1120;
+  --surface: #111827;
+  --card: #1e293b;
+  --border: #334155;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --primary: #10b981;
+  --primary-dark: #059669;
+  --indigo: #6366f1;
+  --warn: #f59e0b;
+  --danger: #ef4444;
+  --radius: 14px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+  background: radial-gradient(circle at top right, #1e293b 0%, var(--bg) 52%);
+  color: var(--text);
+  line-height: 1.55;
+  min-height: 100vh;
+}
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 24px 20px 64px; }
+header.nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 0 28px; border-bottom: 1px solid rgba(148,163,184,0.16);
+  flex-wrap: wrap; gap: 12px;
+}
+.brand { font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em; display: flex; align-items: center; gap: 10px; }
+.brand-dot { width: 12px; height: 12px; border-radius: 4px; background: var(--accent, var(--primary)); display: inline-block; }
+.nav-links { display: flex; gap: 14px; flex-wrap: wrap; font-size: 0.9rem; color: var(--muted); }
+.nav-links a:hover { color: var(--text); }
+.hero { padding: 34px 0 24px; }
+.pill {
+  display: inline-block; padding: 5px 12px; border-radius: 999px; font-size: 0.78rem; font-weight: 700;
+  background: rgba(16,185,129,0.14); color: var(--accent, var(--primary)); border: 1px solid rgba(16,185,129,0.35);
+  margin-bottom: 12px; letter-spacing: 0.03em; text-transform: uppercase;
+}
+h1 { font-size: clamp(1.75rem, 3.6vw, 2.7rem); line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 12px; }
+.lead { color: var(--muted); font-size: 1.05rem; max-width: 740px; }
+.grid-2 { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 24px; margin-top: 24px; }
+@media (max-width: 860px) { .grid-2 { grid-template-columns: 1fr; } }
+.card {
+  background: rgba(30, 41, 59, 0.78); backdrop-filter: blur(8px);
+  border: 1px solid var(--border); border-radius: var(--radius); padding: 22px;
+}
+.card h2 { font-size: 1.08rem; margin-bottom: 16px; color: #e2e8f0; display: flex; justify-content: space-between; align-items: center; }
+.field { margin-bottom: 14px; }
+.field label { display: flex; justify-content: space-between; font-size: 0.88rem; color: #cbd5e1; margin-bottom: 5px; font-weight: 600; }
+.field .hint { font-size: 0.78rem; color: var(--muted); font-weight: 400; }
+input[type="number"], select {
+  width: 100%; background: #0f172a; color: var(--text); border: 1px solid var(--border);
+  border-radius: 9px; padding: 10px 12px; font-size: 0.98rem; font-weight: 600;
+}
+input[type="number"]:focus, select:focus { outline: none; border-color: var(--accent, var(--primary)); }
+input[type="range"] { width: 100%; accent-color: var(--accent, var(--primary)); margin-top: 6px; cursor: pointer; }
+.preset-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.preset-btn {
+  background: #0f172a; color: #cbd5e1; border: 1px solid var(--border); border-radius: 8px;
+  padding: 6px 11px; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: 0.15s;
+}
+.preset-btn:hover, .preset-btn.active { border-color: var(--accent, var(--primary)); color: #fff; background: rgba(16,185,129,0.16); }
+.kpi-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-bottom: 18px; }
+.kpi {
+  background: #0f172a; border: 1px solid var(--border); border-radius: 11px; padding: 14px;
+  border-top: 3px solid var(--accent, var(--primary));
+}
+.kpi.warn { border-top-color: var(--warn); }
+.kpi.danger { border-top-color: var(--danger); }
+.kpi .lbl { font-size: 0.74rem; color: var(--muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.04em; }
+.kpi .val { font-size: 1.55rem; font-weight: 800; margin-top: 4px; letter-spacing: -0.02em; }
+.kpi .sub { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+.bar-wrap { margin: 16px 0; }
+.bar-track { display: flex; height: 18px; border-radius: 999px; overflow: hidden; background: #0f172a; border: 1px solid var(--border); }
+.bar-seg { height: 100%; transition: width 0.25s ease; }
+.legend { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 8px; font-size: 0.8rem; color: #cbd5e1; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.dot { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+.breakdown { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 0.9rem; }
+.breakdown td { padding: 8px 4px; border-bottom: 1px solid rgba(148,163,184,0.14); }
+.breakdown td:last-child { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+.cta-box {
+  margin-top: 26px; background: linear-gradient(135deg, rgba(16,185,129,0.18), rgba(15,23,42,0.95));
+  border: 1px solid var(--accent, var(--primary)); border-radius: var(--radius); padding: 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+}
+.cta-box h3 { font-size: 1.25rem; margin-bottom: 6px; }
+.cta-box p { color: #cbd5e1; font-size: 0.94rem; max-width: 640px; }
+.cta-btn {
+  display: inline-block; background: var(--accent, var(--primary)); color: #052e16;
+  font-weight: 800; padding: 13px 22px; border-radius: 10px; font-size: 0.96rem;
+  white-space: nowrap; transition: transform 0.15s;
+}
+.cta-btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
+.cta-btn.indigo-btn { background: var(--indigo); color: #fff; }
+.faq { margin-top: 38px; }
+.faq h2 { font-size: 1.35rem; margin-bottom: 14px; }
+details {
+  background: rgba(30,41,59,0.65); border: 1px solid var(--border); border-radius: 10px;
+  padding: 14px 16px; margin-bottom: 10px;
+}
+summary { font-weight: 700; cursor: pointer; }
+details p { color: #cbd5e1; margin-top: 8px; font-size: 0.92rem; }
+footer {
+  margin-top: 48px; padding-top: 20px; border-top: 1px solid rgba(148,163,184,0.16);
+  color: var(--muted); font-size: 0.84rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+}
+.hub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin-top: 24px; }
+.hub-card {
+  background: rgba(30,41,59,0.8); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 22px; display: flex; flex-direction: column; justify-content: space-between; gap: 14px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.hub-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+.hub-tag { font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--primary); }
+.hub-card h3 { font-size: 1.15rem; margin-top: 6px; }
+.hub-card p { font-size: 0.9rem; color: var(--muted); }
+.hub-go { font-weight: 700; font-size: 0.9rem; color: #34d399; }
+.alert-bar { margin-top: 10px; padding: 10px 12px; border-radius: 9px; font-size: 0.85rem; font-weight: 600; background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.35); color: #a7f3d0; }
+.alert-bar.warn { background: rgba(245,158,11,0.14); border-color: rgba(245,158,11,0.45); color: #fde68a; }
+.alert-bar.danger { background: rgba(239,68,68,0.15); border-color: rgba(239,68,68,0.5); color: #fecaca; }
+ :root { --accent: #6366f1; }</style>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Free Freelance Tax Reserve, Take-Home Pay & Hourly Rate Calculator (2026)", "url": "https://simkena2026-bot.github.io/sheetcraft-tools/freelance-tax-profit-calculator/", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How much should freelancers set aside for taxes?", "acceptedAnswer": {"@type": "Answer", "text": "A common rule of thumb is 25%–35% of net profit (revenue minus deductible business expenses) to cover both self-employment/social taxes and federal/state income tax."}}, {"@type": "Question", "name": "Why shouldn't freelancers divide desired salary by 2,080 hours?", "acceptedAnswer": {"@type": "Answer", "text": "Full-time freelancers rarely bill 40 hours/week for 52 weeks. Once you subtract vacations, sick days, marketing, proposals, and admin time, realistic billable utilization is usually 60%–70%."}}, {"@type": "Question", "name": "How does the day rate calculation work?", "acceptedAnswer": {"@type": "Answer", "text": "Your recommended Day Rate multiplies your true minimum hourly rate by 8 billable hours so every booked client day covers overhead, non-billable admin time, and taxes."}}]}]}</script>
+</head>
+<body>
+  <div class="wrap">
+    
+    <header class="nav">
+      <a class="brand" href="../index.html"><span class="brand-dot"></span>SheetCraft Studio</a>
+      <nav class="nav-links">
+        <a href="../airbnb-profit-calculator/">Airbnb Calc (EN)</a>
+        <a href="../calcolatore-affitti-brevi/">Affitti Brevi (IT)</a>
+        <a href="../freelance-tax-profit-calculator/">Freelance Calc (EN)</a>
+        <a href="../calcolatore-regime-forfettario/">Forfettario (IT)</a>
+      </nav>
+    </header>
+    
+    
+        <section class="hero">
+          <span class="pill" style="background:rgba(99,102,241,0.16);color:#818cf8;border-color:rgba(99,102,241,0.4);">Free Tool • Freelancers &amp; Consultants</span>
+          <h1>Freelance Tax Reserve &amp; Hourly Rate Calculator</h1>
+          <p class="lead">Know exactly how much to move to your <strong>quarterly tax savings account</strong>, what you truly take home, and the <strong>minimum hourly/day rate</strong> you must charge to hit your income goal.</p>
+        </section>
+        <div class="grid-2">
+          <div class="card">
+            <h2>1. Revenue, Expenses &amp; Billable Hours</h2>
+            <div class="field"><label>Annual Gross Revenue ($) <span class="hint" id="lbl_rev"></span></label>
+              <input type="number" id="rev" value="90000" min="5000" max="500000" step="1000">
+              <input type="range" id="rev_r" value="90000" min="15000" max="250000" step="2500">
+            </div>
+            <div class="field"><label>Annual Deductible Business Expenses ($) <span class="hint">SaaS, gear, office, CPA</span></label>
+              <input type="number" id="opex" value="8500" min="0" max="150000" step="250">
+            </div>
+            <div class="field"><label>Self-Employment / Social Tax (%) <span class="hint">e.g. 15.3% US SE Tax</span></label>
+              <input type="number" id="setax" value="15.3" min="0" max="40" step="0.1">
+            </div>
+            <div class="field"><label>Income Tax Rate (% of Taxable Profit)</label>
+              <input type="number" id="inctax" value="18" min="0" max="50" step="1">
+            </div>
+            <div class="field"><label>Working Weeks / Year <span class="hint">52 minus vacation &amp; holidays</span></label>
+              <input type="number" id="weeks" value="46" min="10" max="52" step="1">
+            </div>
+            <div class="field"><label>Billable Hours / Week <span class="hint">Paid client work (excl. admin/sales)</span></label>
+              <input type="number" id="bhours" value="25" min="5" max="60" step="1">
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>2. Take-Home Profit, Taxes &amp; Required Rate</h2>
+            <div class="kpi-grid">
+              <div class="kpi"><div class="lbl">Monthly Take-Home Pay</div><div class="val" id="out_net_mo">—</div><div class="sub" id="out_net_yr">—</div></div>
+              <div class="kpi warn"><div class="lbl">Quarterly Tax Reserve</div><div class="val" id="out_qtax">—</div><div class="sub" id="out_tax_yr">—</div></div>
+              <div class="kpi"><div class="lbl">Required Hourly Rate</div><div class="val" id="out_hr">—</div><div class="sub" id="out_hrs_yr">—</div></div>
+              <div class="kpi"><div class="lbl">Recommended Day Rate</div><div class="val" id="out_day">—</div><div class="sub">Based on 8 billable hours</div></div>
+            </div>
+            <div class="bar-wrap">
+              <div class="bar-track">
+                <div class="bar-seg" id="seg_net" style="background:#10b981;"></div>
+                <div class="bar-seg" id="seg_tax" style="background:#f59e0b;"></div>
+                <div class="bar-seg" id="seg_opex" style="background:#64748b;"></div>
+              </div>
+              <div class="legend">
+                <span><i class="dot" style="background:#10b981"></i>Take-Home Pay</span>
+                <span><i class="dot" style="background:#f59e0b"></i>Total Tax Reserve</span>
+                <span><i class="dot" style="background:#64748b"></i>Business Expenses</span>
+              </div>
+            </div>
+            <table class="breakdown">
+              <tr><td>Gross Annual Revenue</td><td id="t_gross">—</td></tr>
+              <tr><td>Deductible Business Expenses</td><td id="t_opex">—</td></tr>
+              <tr><td>Estimated Taxable Profit</td><td id="t_taxable">—</td></tr>
+              <tr><td>Self-Employment + Income Tax Reserve</td><td id="t_tax">—</td></tr>
+              <tr><td><strong>Annual Net Take-Home Pay</strong></td><td id="t_net">—</td></tr>
+              <tr><td>Effective Take-Home Margin</td><td id="t_margin">—</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <section class="cta-box" style="background:linear-gradient(135deg,rgba(99,102,241,0.22),rgba(15,23,42,0.95));border-color:#6366f1;">
+          <div>
+            <h3>Run Your Whole Solo Business in One Sheet — Freelance Profit OS Pro</h3>
+            <p>8 linked Excel &amp; Google Sheets tabs: Invoice &amp; Overdue AR tracker, Quarterly Tax Schedule, Client True Effective Hourly Rate scorecard, 12-Month Cashflow &amp; Fixed Project Quote Builder. Pay once, own forever.</p>
+          </div>
+          <a class="cta-btn indigo-btn" href="https://sengir.gumroad.com/l/freelance-profit-os-en" target="_blank" rel="noopener">Get Freelance Profit OS Pro ($15) →</a>
+        </section>
+
+        <section class="faq">
+          <h2>Frequently Asked Questions</h2>
+          <details><summary>How much should freelancers set aside for taxes?</summary><p>A common rule of thumb is 25%–35% of net profit (revenue minus deductible business expenses) to cover both self-employment/social taxes and federal/state income tax.</p></details><details><summary>Why shouldn't freelancers divide desired salary by 2,080 hours?</summary><p>Full-time freelancers rarely bill 40 hours/week for 52 weeks. Once you subtract vacations, sick days, marketing, proposals, and admin time, realistic billable utilization is usually 60%–70%.</p></details><details><summary>How does the day rate calculation work?</summary><p>Your recommended Day Rate multiplies your true minimum hourly rate by 8 billable hours so every booked client day covers overhead, non-billable admin time, and taxes.</p></details>
+        </section>
+        
+    <footer>
+      <span>© 2026 SheetCraft Studio — Free Client-Side Financial Calculators</span>
+      <span>Informational tool only — not formal tax or accounting advice.</span>
+    </footer>
+  </div>
+  <script>
+        const fmt = n => (n < 0 ? '-' : '') + '$' + Math.round(Math.abs(n)).toLocaleString('en-US');
+        const el = id => document.getElementById(id);
+        el('rev').addEventListener('input', () => { el('rev_r').value = el('rev').value; calc(); });
+        el('rev_r').addEventListener('input', () => { el('rev').value = el('rev_r').value; calc(); });
+        ['opex', 'setax', 'inctax', 'weeks', 'bhours'].forEach(id => el(id).addEventListener('input', calc));
+
+        function calc() {
+          const rev = Math.max(0, +el('rev').value || 0);
+          const opex = Math.max(0, +el('opex').value || 0);
+          const se = Math.max(0, Math.min(50, +el('setax').value || 0)) / 100;
+          const inc = Math.max(0, Math.min(60, +el('inctax').value || 0)) / 100;
+          const weeks = Math.max(1, +el('weeks').value || 46);
+          const bhours = Math.max(1, +el('bhours').value || 25);
+
+          const taxable = Math.max(0, rev - opex);
+          const totTax = taxable * (se + inc);
+          const netYr = rev - opex - totTax;
+          const netMo = netYr / 12;
+          const totHrs = weeks * bhours;
+          const reqHr = totHrs > 0 ? rev / totHrs : 0;
+          const margin = rev > 0 ? (netYr / rev) * 100 : 0;
+
+          el('lbl_rev').textContent = fmt(rev / 12) + '/mo gross';
+          el('out_net_mo').textContent = fmt(netMo);
+          el('out_net_yr').textContent = fmt(netYr) + ' / year';
+          el('out_qtax').textContent = fmt(totTax / 4);
+          el('out_tax_yr').textContent = fmt(totTax) + ' total annual tax';
+          el('out_hr').textContent = fmt(reqHr) + '/hr';
+          el('out_hrs_yr').textContent = Math.round(totHrs).toLocaleString() + ' billable hrs/yr';
+          el('out_day').textContent = fmt(reqHr * 8);
+
+          el('t_gross').textContent = fmt(rev);
+          el('t_opex').textContent = '-' + fmt(opex);
+          el('t_taxable').textContent = fmt(taxable);
+          el('t_tax').textContent = '-' + fmt(totTax);
+          el('t_net').textContent = fmt(netYr);
+          el('t_margin').textContent = margin.toFixed(1) + '%';
+
+          const tot = Math.max(rev, 1);
+          el('seg_net').style.width = Math.max(0, (netYr / tot) * 100) + '%';
+          el('seg_tax').style.width = ((totTax / tot) * 100) + '%';
+          el('seg_opex').style.width = ((opex / tot) * 100) + '%';
+        }
+        calc();
+        </script>
+</body>
+</html>

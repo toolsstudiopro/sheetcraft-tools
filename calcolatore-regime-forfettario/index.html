@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calcolatore Gratis Regime Forfettario 2026: Tasse 5%/15%, INPS, ATECO & Netto Mensile</title>
+  <meta name="description" content="Simula subito il tuo guadagno netto in Partita IVA Forfettaria: seleziona il coefficiente ATECO (78%, 67%, 40%), imposta sostitutiva 5% o 15%, INPS Gestione Separata, spese reali e soglia €85.000.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://simkena2026-bot.github.io/sheetcraft-tools/calcolatore-regime-forfettario/">
+  <link rel="alternate" hreflang="en" href="https://simkena2026-bot.github.io/sheetcraft-tools/freelance-tax-profit-calculator/">
+  <meta property="og:title" content="Calcolatore Gratis Regime Forfettario 2026: Tasse 5%/15%, INPS, ATECO & Netto Mensile">
+  <meta property="og:description" content="Simula subito il tuo guadagno netto in Partita IVA Forfettaria: seleziona il coefficiente ATECO (78%, 67%, 40%), imposta sostitutiva 5% o 15%, INPS Gestione Separata, spese reali e soglia €85.000.">
+  <meta property="og:type" content="website">
+  <style>
+:root {
+  --bg: #0b1120;
+  --surface: #111827;
+  --card: #1e293b;
+  --border: #334155;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --primary: #10b981;
+  --primary-dark: #059669;
+  --indigo: #6366f1;
+  --warn: #f59e0b;
+  --danger: #ef4444;
+  --radius: 14px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+  background: radial-gradient(circle at top right, #1e293b 0%, var(--bg) 52%);
+  color: var(--text);
+  line-height: 1.55;
+  min-height: 100vh;
+}
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 24px 20px 64px; }
+header.nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 0 28px; border-bottom: 1px solid rgba(148,163,184,0.16);
+  flex-wrap: wrap; gap: 12px;
+}
+.brand { font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em; display: flex; align-items: center; gap: 10px; }
+.brand-dot { width: 12px; height: 12px; border-radius: 4px; background: var(--accent, var(--primary)); display: inline-block; }
+.nav-links { display: flex; gap: 14px; flex-wrap: wrap; font-size: 0.9rem; color: var(--muted); }
+.nav-links a:hover { color: var(--text); }
+.hero { padding: 34px 0 24px; }
+.pill {
+  display: inline-block; padding: 5px 12px; border-radius: 999px; font-size: 0.78rem; font-weight: 700;
+  background: rgba(16,185,129,0.14); color: var(--accent, var(--primary)); border: 1px solid rgba(16,185,129,0.35);
+  margin-bottom: 12px; letter-spacing: 0.03em; text-transform: uppercase;
+}
+h1 { font-size: clamp(1.75rem, 3.6vw, 2.7rem); line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 12px; }
+.lead { color: var(--muted); font-size: 1.05rem; max-width: 740px; }
+.grid-2 { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 24px; margin-top: 24px; }
+@media (max-width: 860px) { .grid-2 { grid-template-columns: 1fr; } }
+.card {
+  background: rgba(30, 41, 59, 0.78); backdrop-filter: blur(8px);
+  border: 1px solid var(--border); border-radius: var(--radius); padding: 22px;
+}
+.card h2 { font-size: 1.08rem; margin-bottom: 16px; color: #e2e8f0; display: flex; justify-content: space-between; align-items: center; }
+.field { margin-bottom: 14px; }
+.field label { display: flex; justify-content: space-between; font-size: 0.88rem; color: #cbd5e1; margin-bottom: 5px; font-weight: 600; }
+.field .hint { font-size: 0.78rem; color: var(--muted); font-weight: 400; }
+input[type="number"], select {
+  width: 100%; background: #0f172a; color: var(--text); border: 1px solid var(--border);
+  border-radius: 9px; padding: 10px 12px; font-size: 0.98rem; font-weight: 600;
+}
+input[type="number"]:focus, select:focus { outline: none; border-color: var(--accent, var(--primary)); }
+input[type="range"] { width: 100%; accent-color: var(--accent, var(--primary)); margin-top: 6px; cursor: pointer; }
+.preset-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.preset-btn {
+  background: #0f172a; color: #cbd5e1; border: 1px solid var(--border); border-radius: 8px;
+  padding: 6px 11px; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: 0.15s;
+}
+.preset-btn:hover, .preset-btn.active { border-color: var(--accent, var(--primary)); color: #fff; background: rgba(16,185,129,0.16); }
+.kpi-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-bottom: 18px; }
+.kpi {
+  background: #0f172a; border: 1px solid var(--border); border-radius: 11px; padding: 14px;
+  border-top: 3px solid var(--accent, var(--primary));
+}
+.kpi.warn { border-top-color: var(--warn); }
+.kpi.danger { border-top-color: var(--danger); }
+.kpi .lbl { font-size: 0.74rem; color: var(--muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.04em; }
+.kpi .val { font-size: 1.55rem; font-weight: 800; margin-top: 4px; letter-spacing: -0.02em; }
+.kpi .sub { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+.bar-wrap { margin: 16px 0; }
+.bar-track { display: flex; height: 18px; border-radius: 999px; overflow: hidden; background: #0f172a; border: 1px solid var(--border); }
+.bar-seg { height: 100%; transition: width 0.25s ease; }
+.legend { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 8px; font-size: 0.8rem; color: #cbd5e1; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.dot { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+.breakdown { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 0.9rem; }
+.breakdown td { padding: 8px 4px; border-bottom: 1px solid rgba(148,163,184,0.14); }
+.breakdown td:last-child { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+.cta-box {
+  margin-top: 26px; background: linear-gradient(135deg, rgba(16,185,129,0.18), rgba(15,23,42,0.95));
+  border: 1px solid var(--accent, var(--primary)); border-radius: var(--radius); padding: 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+}
+.cta-box h3 { font-size: 1.25rem; margin-bottom: 6px; }
+.cta-box p { color: #cbd5e1; font-size: 0.94rem; max-width: 640px; }
+.cta-btn {
+  display: inline-block; background: var(--accent, var(--primary)); color: #052e16;
+  font-weight: 800; padding: 13px 22px; border-radius: 10px; font-size: 0.96rem;
+  white-space: nowrap; transition: transform 0.15s;
+}
+.cta-btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
+.cta-btn.indigo-btn { background: var(--indigo); color: #fff; }
+.faq { margin-top: 38px; }
+.faq h2 { font-size: 1.35rem; margin-bottom: 14px; }
+details {
+  background: rgba(30,41,59,0.65); border: 1px solid var(--border); border-radius: 10px;
+  padding: 14px 16px; margin-bottom: 10px;
+}
+summary { font-weight: 700; cursor: pointer; }
+details p { color: #cbd5e1; margin-top: 8px; font-size: 0.92rem; }
+footer {
+  margin-top: 48px; padding-top: 20px; border-top: 1px solid rgba(148,163,184,0.16);
+  color: var(--muted); font-size: 0.84rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+}
+.hub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin-top: 24px; }
+.hub-card {
+  background: rgba(30,41,59,0.8); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 22px; display: flex; flex-direction: column; justify-content: space-between; gap: 14px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.hub-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+.hub-tag { font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--primary); }
+.hub-card h3 { font-size: 1.15rem; margin-top: 6px; }
+.hub-card p { font-size: 0.9rem; color: var(--muted); }
+.hub-go { font-weight: 700; font-size: 0.9rem; color: #34d399; }
+.alert-bar { margin-top: 10px; padding: 10px 12px; border-radius: 9px; font-size: 0.85rem; font-weight: 600; background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.35); color: #a7f3d0; }
+.alert-bar.warn { background: rgba(245,158,11,0.14); border-color: rgba(245,158,11,0.45); color: #fde68a; }
+.alert-bar.danger { background: rgba(239,68,68,0.15); border-color: rgba(239,68,68,0.5); color: #fecaca; }
+ :root { --accent: #6366f1; }</style>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Calcolatore Gratis Regime Forfettario 2026: Tasse 5%/15%, INPS, ATECO & Netto Mensile", "url": "https://simkena2026-bot.github.io/sheetcraft-tools/calcolatore-regime-forfettario/", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Come si calcolano tasse e INPS nel Regime Forfettario?", "acceptedAnswer": {"@type": "Answer", "text": "Si moltiplica il fatturato incassato per il Coefficiente di Redditività ATECO (es. 78% per professionisti/IT), ottenendo il reddito forfettario lordo. Su quello si calcolano i contributi INPS (es. 26,07% Gestione Separata). I contributi previdenziali si deducono prima di applicare l'Imposta Sostitutiva del 5% (start-up) o 15%."}}, {"@type": "Question", "name": "Le spese aziendali abbassano le tasse nel forfettario?", "acceptedAnswer": {"@type": "Answer", "text": "No, le spese reali non sono deducibili analiticamente perché sostituite dal coefficiente ATECO — ma escono comunque dal tuo conto corrente! Questo calcolatore le sottrae per mostrarti il tuo stipendio netto davvero spendibile."}}, {"@type": "Question", "name": "Cosa succede se supero gli €85.000 di incassato?", "acceptedAnswer": {"@type": "Answer", "text": "Superando €85.000 (principio di cassa) si esce dal Regime Forfettario a partire dall'anno successivo; superando €100.000 l'uscita è immediata già nell'anno in corso."}}]}]}</script>
+</head>
+<body>
+  <div class="wrap">
+    
+    <header class="nav">
+      <a class="brand" href="../index.html"><span class="brand-dot"></span>SheetCraft Studio</a>
+      <nav class="nav-links">
+        <a href="../airbnb-profit-calculator/">Airbnb Calc (EN)</a>
+        <a href="../calcolatore-affitti-brevi/">Affitti Brevi (IT)</a>
+        <a href="../freelance-tax-profit-calculator/">Freelance Calc (EN)</a>
+        <a href="../calcolatore-regime-forfettario/">Forfettario (IT)</a>
+      </nav>
+    </header>
+    
+    
+        <section class="hero">
+          <span class="pill" style="background:rgba(99,102,241,0.16);color:#818cf8;border-color:rgba(99,102,241,0.4);">Strumento Gratuito • Regime Forfettario 2026</span>
+          <h1>Calcolatore Regime Forfettario: Tasse, INPS &amp; Netto Reale</h1>
+          <p class="lead">Scopri in tempo reale quanto mettere da parte ogni mese per <strong>INPS + Imposta Sostitutiva (5% o 15%)</strong>, quanto ti resta davvero in tasca e quanto sei vicino alla soglia di <strong>€85.000</strong>.</p>
+        </section>
+        <div class="grid-2">
+          <div class="card">
+            <h2>1. Dati della tua Partita IVA</h2>
+            <div class="preset-row">
+              <button class="preset-btn active" type="button" onclick="setAteco(78, 26.07, this)">Professionisti / IT (78%)</button>
+              <button class="preset-btn" type="button" onclick="setAteco(67, 24.48, this)">Artigiani / Web (67%)</button>
+              <button class="preset-btn" type="button" onclick="setAteco(40, 24.48, this)">Commercio (40%)</button>
+              <button class="preset-btn" type="button" onclick="setAteco(54, 24.48, this)">Agenti (54%)</button>
+            </div>
+            <div class="field"><label>Fatturato Annuo Incassato (€) <span class="hint" id="lbl_rev"></span></label>
+              <input type="number" id="rev" value="50000" min="1000" max="120000" step="1000">
+              <input type="range" id="rev_r" value="50000" min="5000" max="100000" step="1000">
+            </div>
+            <div class="field"><label>Coefficiente di Redditività ATECO (%)</label>
+              <input type="number" id="ateco" value="78" min="40" max="86" step="1">
+            </div>
+            <div class="field"><label>Imposta Sostitutiva</label>
+              <select id="imp">
+                <option value="5" selected>5% — Start-up (Primi 5 anni)</option>
+                <option value="15">15% — Aliquota Ordinaria</option>
+              </select>
+            </div>
+            <div class="field"><label>Aliquota Previdenziale INPS / Cassa (%) <span class="hint">Es. 26,07% Gestione Separata</span></label>
+              <input type="number" id="inps" value="26.07" min="0" max="35" step="0.01">
+            </div>
+            <div class="field"><label>Spese Reali Annue (€) <span class="hint">Software, commercialista, coworking, PC</span></label>
+              <input type="number" id="opex" value="3600" min="0" max="50000" step="100">
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>2. Netto Reale &amp; Accantonamento Fiscale</h2>
+            <div class="kpi-grid">
+              <div class="kpi"><div class="lbl">Stipendio Netto / Mese</div><div class="val" id="out_net_mo">—</div><div class="sub" id="out_net_yr">—</div></div>
+              <div class="kpi warn"><div class="lbl">Accantonamento / Mese</div><div class="val" id="out_tax_mo">—</div><div class="sub" id="out_eff_rate">—</div></div>
+              <div class="kpi"><div class="lbl">Totale INPS + Imposta / Anno</div><div class="val" id="out_tax_yr">—</div><div class="sub" id="out_split">—</div></div>
+              <div class="kpi"><div class="lbl">Uso Soglia €85.000</div><div class="val" id="out_thresh">—</div><div class="sub" id="out_headroom">—</div></div>
+            </div>
+            <div class="alert-bar" id="thresh_alert">—</div>
+            <div class="bar-wrap">
+              <div class="bar-track">
+                <div class="bar-seg" id="seg_net" style="background:#10b981;"></div>
+                <div class="bar-seg" id="seg_inps" style="background:#f59e0b;"></div>
+                <div class="bar-seg" id="seg_imp" style="background:#6366f1;"></div>
+                <div class="bar-seg" id="seg_opex" style="background:#64748b;"></div>
+              </div>
+              <div class="legend">
+                <span><i class="dot" style="background:#10b981"></i>Netto Spendibile</span>
+                <span><i class="dot" style="background:#f59e0b"></i>INPS / Cassa</span>
+                <span><i class="dot" style="background:#6366f1"></i>Imposta 5%/15%</span>
+                <span><i class="dot" style="background:#64748b"></i>Spese Reali</span>
+              </div>
+            </div>
+            <table class="breakdown">
+              <tr><td>Reddito Lordo Forfettario (Incassato × ATECO)</td><td id="t_forf">—</td></tr>
+              <tr><td>Contributi Previdenziali Stimati (Deducibili)</td><td id="t_inps">—</td></tr>
+              <tr><td>Imponibile Imposta Sostitutiva</td><td id="t_base">—</td></tr>
+              <tr><td>Imposta Sostitutiva (5% / 15%)</td><td id="t_imp">—</td></tr>
+              <tr><td>Spese Aziendali Reali</td><td id="t_opex">—</td></tr>
+              <tr><td><strong>Utile Netto Reale Annuo</strong></td><td id="t_net">—</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <section class="cta-box" style="background:linear-gradient(135deg,rgba(99,102,241,0.22),rgba(15,23,42,0.95));border-color:#6366f1;">
+          <div>
+            <h3>Gestisci Fatture, Scadenze e Accantonamento Mese per Mese</h3>
+            <p>Scarica il <strong>Gestionale Partita IVA Forfettario Pro</strong> (8 fogli Excel &amp; Google Sheets): Principio di cassa automatico, registro 250 fatture, redditività oraria per cliente, monitoraggio soglia €85.000 e Calcolatore Tariffa Oraria &amp; Preventivi.</p>
+          </div>
+          <a class="cta-btn indigo-btn" href="https://sengir.gumroad.com/l/gestionale-partita-iva-forfettario" target="_blank" rel="noopener">Scarica il Gestionale Pro (€15) →</a>
+        </section>
+
+        <section class="faq">
+          <h2>Domande Frequenti sul Forfettario</h2>
+          <details><summary>Come si calcolano tasse e INPS nel Regime Forfettario?</summary><p>Si moltiplica il fatturato incassato per il Coefficiente di Redditività ATECO (es. 78% per professionisti/IT), ottenendo il reddito forfettario lordo. Su quello si calcolano i contributi INPS (es. 26,07% Gestione Separata). I contributi previdenziali si deducono prima di applicare l'Imposta Sostitutiva del 5% (start-up) o 15%.</p></details><details><summary>Le spese aziendali abbassano le tasse nel forfettario?</summary><p>No, le spese reali non sono deducibili analiticamente perché sostituite dal coefficiente ATECO — ma escono comunque dal tuo conto corrente! Questo calcolatore le sottrae per mostrarti il tuo stipendio netto davvero spendibile.</p></details><details><summary>Cosa succede se supero gli €85.000 di incassato?</summary><p>Superando €85.000 (principio di cassa) si esce dal Regime Forfettario a partire dall'anno successivo; superando €100.000 l'uscita è immediata già nell'anno in corso.</p></details>
+        </section>
+        
+    <footer>
+      <span>© 2026 SheetCraft Studio — Free Client-Side Financial Calculators</span>
+      <span>Strumento informativo: non sostituisce un commercialista.</span>
+    </footer>
+  </div>
+  <script>
+        const fmt = n => (n < 0 ? '-' : '') + '€' + Math.round(Math.abs(n)).toLocaleString('it-IT');
+        const el = id => document.getElementById(id);
+        el('rev').addEventListener('input', () => { el('rev_r').value = el('rev').value; calc(); });
+        el('rev_r').addEventListener('input', () => { el('rev').value = el('rev_r').value; calc(); });
+        ['ateco', 'imp', 'inps', 'opex'].forEach(id => el(id).addEventListener('input', calc));
+
+        function setAteco(a, i, btn) {
+          el('ateco').value = a;
+          el('inps').value = i;
+          document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          calc();
+        }
+
+        function calc() {
+          const rev = Math.max(0, +el('rev').value || 0);
+          const ateco = Math.max(0, Math.min(100, +el('ateco').value || 0)) / 100;
+          const impRate = Math.max(0, Math.min(50, +el('imp').value || 0)) / 100;
+          const inpsRate = Math.max(0, Math.min(50, +el('inps').value || 0)) / 100;
+          const opex = Math.max(0, +el('opex').value || 0);
+
+          const forf = rev * ateco;
+          const inpsAmt = forf * inpsRate;
+          const taxBase = Math.max(0, forf - inpsAmt);
+          const impAmt = taxBase * impRate;
+          const totTax = inpsAmt + impAmt;
+          const netYr = rev - opex - totTax;
+          const netMo = netYr / 12;
+          const effRate = rev > 0 ? (totTax / rev) * 100 : 0;
+          const pct85 = (rev / 85000) * 100;
+          const headroom = 85000 - rev;
+
+          el('lbl_rev').textContent = fmt(rev / 12) + '/mese lordi';
+          el('out_net_mo').textContent = fmt(netMo);
+          el('out_net_yr').textContent = fmt(netYr) + ' / anno';
+          el('out_tax_mo').textContent = fmt(totTax / 12);
+          el('out_eff_rate').textContent = effRate.toFixed(1) + '% pressione fiscale reale';
+          el('out_tax_yr').textContent = fmt(totTax);
+          el('out_split').textContent = 'INPS ' + fmt(inpsAmt) + ' + Imp. ' + fmt(impAmt);
+          el('out_thresh').textContent = pct85.toFixed(1) + '%';
+          el('out_headroom').textContent = headroom >= 0 ? ('Residuo: ' + fmt(headroom)) : ('Oltre soglia di ' + fmt(-headroom));
+
+          const ab = el('thresh_alert');
+          ab.className = 'alert-bar';
+          if (rev > 100000) {
+            ab.classList.add('danger');
+            ab.textContent = 'ATTENZIONE: Oltre €100.000 uscita IMMEDIATA dal Regime Forfettario in corso d\'anno!';
+          } else if (rev > 85000) {
+            ab.classList.add('warn');
+            ab.textContent = 'AVVISO: Oltre €85.000 uscita dal Regime Forfettario a partire dall\'anno successivo.';
+          } else if (rev >= 75000) {
+            ab.classList.add('warn');
+            ab.textContent = 'Vicino alla soglia €85.000 — monitora attentamente gli incassi di fine anno.';
+          } else {
+            ab.textContent = 'Dentro la soglia €85.000 — puoi ancora incassare ' + fmt(headroom) + ' quest\'anno.';
+          }
+
+          el('t_forf').textContent = fmt(forf);
+          el('t_inps').textContent = '-' + fmt(inpsAmt);
+          el('t_base').textContent = fmt(taxBase);
+          el('t_imp').textContent = '-' + fmt(impAmt);
+          el('t_opex').textContent = '-' + fmt(opex);
+          el('t_net').textContent = fmt(netYr);
+
+          const tot = Math.max(rev, 1);
+          el('seg_net').style.width = Math.max(0, (netYr / tot) * 100) + '%';
+          el('seg_inps').style.width = ((inpsAmt / tot) * 100) + '%';
+          el('seg_imp').style.width = ((impAmt / tot) * 100) + '%';
+          el('seg_opex').style.width = ((opex / tot) * 100) + '%';
+        }
+        calc();
+        </script>
+</body>
+</html>

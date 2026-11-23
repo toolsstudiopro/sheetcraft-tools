@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://simkena2026-bot.github.io/sheetcraft-tools/sitemap.xml
