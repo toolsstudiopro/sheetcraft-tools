@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="uT2_jkZMImXVB3RG_87C-Wll_ms9dv8wtORV2BLJJ-I" />
+  <title>Calcolatore Gratis ROAS di Pareggio, Margine Netto & Profitti E-commerce (2026)</title>
+  <meta name="description" content="Calcola subito il ROAS minimo di pareggio (Break-Even ROAS), CPA massimo sostenibile, margine di contribuzione e utile netto mensile per Shopify, WooCommerce e Amazon.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://simkena2026-bot.github.io/sheetcraft-tools/calcolatore-roas-ecommerce/">
+  <link rel="alternate" hreflang="en" href="https://simkena2026-bot.github.io/sheetcraft-tools/ecommerce-roas-profit-calculator/">
+  <meta property="og:title" content="Calcolatore Gratis ROAS di Pareggio, Margine Netto & Profitti E-commerce (2026)">
+  <meta property="og:description" content="Calcola subito il ROAS minimo di pareggio (Break-Even ROAS), CPA massimo sostenibile, margine di contribuzione e utile netto mensile per Shopify, WooCommerce e Amazon.">
+  <meta property="og:type" content="website">
+  <style>
+:root {
+  --bg: #0b1120;
+  --surface: #111827;
+  --card: #1e293b;
+  --border: #334155;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --primary: #10b981;
+  --primary-dark: #059669;
+  --indigo: #6366f1;
+  --warn: #f59e0b;
+  --danger: #ef4444;
+  --radius: 14px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+  background: radial-gradient(circle at top right, #1e293b 0%, var(--bg) 52%);
+  color: var(--text);
+  line-height: 1.55;
+  min-height: 100vh;
+}
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 24px 20px 64px; }
+header.nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 0 28px; border-bottom: 1px solid rgba(148,163,184,0.16);
+  flex-wrap: wrap; gap: 12px;
+}
+.brand { font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em; display: flex; align-items: center; gap: 10px; }
+.brand-dot { width: 12px; height: 12px; border-radius: 4px; background: var(--accent, var(--primary)); display: inline-block; }
+.nav-links { display: flex; gap: 14px; flex-wrap: wrap; font-size: 0.9rem; color: var(--muted); }
+.nav-links a:hover { color: var(--text); }
+.hero { padding: 34px 0 24px; }
+.pill {
+  display: inline-block; padding: 5px 12px; border-radius: 999px; font-size: 0.78rem; font-weight: 700;
+  background: rgba(16,185,129,0.14); color: var(--accent, var(--primary)); border: 1px solid rgba(16,185,129,0.35);
+  margin-bottom: 12px; letter-spacing: 0.03em; text-transform: uppercase;
+}
+h1 { font-size: clamp(1.75rem, 3.6vw, 2.7rem); line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 12px; }
+.lead { color: var(--muted); font-size: 1.05rem; max-width: 740px; }
+.grid-2 { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 24px; margin-top: 24px; }
+@media (max-width: 860px) { .grid-2 { grid-template-columns: 1fr; } }
+.card {
+  background: rgba(30, 41, 59, 0.78); backdrop-filter: blur(8px);
+  border: 1px solid var(--border); border-radius: var(--radius); padding: 22px;
+}
+.card h2 { font-size: 1.08rem; margin-bottom: 16px; color: #e2e8f0; display: flex; justify-content: space-between; align-items: center; }
+.field { margin-bottom: 14px; }
+.field label { display: flex; justify-content: space-between; font-size: 0.88rem; color: #cbd5e1; margin-bottom: 5px; font-weight: 600; }
+.field .hint { font-size: 0.78rem; color: var(--muted); font-weight: 400; }
+input[type="number"], select {
+  width: 100%; background: #0f172a; color: var(--text); border: 1px solid var(--border);
+  border-radius: 9px; padding: 10px 12px; font-size: 0.98rem; font-weight: 600;
+}
+input[type="number"]:focus, select:focus { outline: none; border-color: var(--accent, var(--primary)); }
+input[type="range"] { width: 100%; accent-color: var(--accent, var(--primary)); margin-top: 6px; cursor: pointer; }
+.preset-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.preset-btn {
+  background: #0f172a; color: #cbd5e1; border: 1px solid var(--border); border-radius: 8px;
+  padding: 6px 11px; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: 0.15s;
+}
+.preset-btn:hover, .preset-btn.active { border-color: var(--accent, var(--primary)); color: #fff; background: rgba(16,185,129,0.16); }
+.kpi-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-bottom: 18px; }
+.kpi {
+  background: #0f172a; border: 1px solid var(--border); border-radius: 11px; padding: 14px;
+  border-top: 3px solid var(--accent, var(--primary));
+}
+.kpi.warn { border-top-color: var(--warn); }
+.kpi.danger { border-top-color: var(--danger); }
+.kpi .lbl { font-size: 0.74rem; color: var(--muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.04em; }
+.kpi .val { font-size: 1.55rem; font-weight: 800; margin-top: 4px; letter-spacing: -0.02em; }
+.kpi .sub { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+.bar-wrap { margin: 16px 0; }
+.bar-track { display: flex; height: 18px; border-radius: 999px; overflow: hidden; background: #0f172a; border: 1px solid var(--border); }
+.bar-seg { height: 100%; transition: width 0.25s ease; }
+.legend { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 8px; font-size: 0.8rem; color: #cbd5e1; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.dot { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+.breakdown { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 0.9rem; }
+.breakdown td { padding: 8px 4px; border-bottom: 1px solid rgba(148,163,184,0.14); }
+.breakdown td:last-child { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+.cta-box {
+  margin-top: 26px; background: linear-gradient(135deg, rgba(16,185,129,0.18), rgba(15,23,42,0.95));
+  border: 1px solid var(--accent, var(--primary)); border-radius: var(--radius); padding: 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+}
+.cta-box h3 { font-size: 1.25rem; margin-bottom: 6px; }
+.cta-box p { color: #cbd5e1; font-size: 0.94rem; max-width: 640px; }
+.cta-btn {
+  display: inline-block; background: var(--accent, var(--primary)); color: #052e16;
+  font-weight: 800; padding: 13px 22px; border-radius: 10px; font-size: 0.96rem;
+  white-space: nowrap; transition: transform 0.15s;
+}
+.cta-btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
+.cta-btn.indigo-btn { background: var(--indigo); color: #fff; }
+.faq { margin-top: 38px; }
+.faq h2 { font-size: 1.35rem; margin-bottom: 14px; }
+details {
+  background: rgba(30,41,59,0.65); border: 1px solid var(--border); border-radius: 10px;
+  padding: 14px 16px; margin-bottom: 10px;
+}
+summary { font-weight: 700; cursor: pointer; }
+details p { color: #cbd5e1; margin-top: 8px; font-size: 0.92rem; }
+footer {
+  margin-top: 48px; padding-top: 20px; border-top: 1px solid rgba(148,163,184,0.16);
+  color: var(--muted); font-size: 0.84rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+}
+.hub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin-top: 24px; }
+.hub-card {
+  background: rgba(30,41,59,0.8); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 22px; display: flex; flex-direction: column; justify-content: space-between; gap: 14px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.hub-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+.hub-tag { font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--primary); }
+.hub-card h3 { font-size: 1.15rem; margin-top: 6px; }
+.hub-card p { font-size: 0.9rem; color: var(--muted); }
+.hub-go { font-weight: 700; font-size: 0.9rem; color: #34d399; }
+.alert-bar { margin-top: 10px; padding: 10px 12px; border-radius: 9px; font-size: 0.85rem; font-weight: 600; background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.35); color: #a7f3d0; }
+.alert-bar.warn { background: rgba(245,158,11,0.14); border-color: rgba(245,158,11,0.45); color: #fde68a; }
+.alert-bar.danger { background: rgba(239,68,68,0.15); border-color: rgba(239,68,68,0.5); color: #fecaca; }
+ :root { --accent: #0284c7; }</style>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Calcolatore Gratis ROAS di Pareggio, Margine Netto & Profitti E-commerce (2026)", "url": "https://simkena2026-bot.github.io/sheetcraft-tools/calcolatore-roas-ecommerce/", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Come si calcola il ROAS di pareggio (Break-Even ROAS)?", "acceptedAnswer": {"@type": "Answer", "text": "Il ROAS di pareggio è 1 diviso il Margine di Contribuzione % (al netto di COGS, spedizione, packaging, commissioni pagamento e resi). Se il tuo margine è 50%, il Break-Even ROAS è 2,0x: sotto 2,0x perdi soldi ad ogni vendita."}}, {"@type": "Question", "name": "Cos'è il CPA Massimo sostenibile?", "acceptedAnswer": {"@type": "Answer", "text": "È esattamente il margine in euro che ti resta su un ordine prima della spesa pubblicitaria. Se il tuo CPA su Meta/TikTok/Google supera quella cifra, la campagna è in perdita."}}, {"@type": "Question", "name": "Perché guardare il MER oltre al ROAS di Meta?", "acceptedAnswer": {"@type": "Answer", "text": "Il MER (Vendite Nette / Spesa Ads Totale) misura l'efficienza reale su tutto il negozio senza essere falsato dall'attribuzione ottimistica delle piattaforme pubblicitarie."}}]}]}</script>
+</head>
+<body>
+  <div class="wrap">
+    
+    <header class="nav">
+      <a class="brand" href="../index.html"><span class="brand-dot"></span>SheetCraft Studio</a>
+      <nav class="nav-links">
+        <a href="../airbnb-profit-calculator/">Airbnb (EN)</a>
+        <a href="../calcolatore-affitti-brevi/">Affitti Brevi (IT)</a>
+        <a href="../freelance-tax-profit-calculator/">Freelance (EN)</a>
+        <a href="../calcolatore-regime-forfettario/">Forfettario (IT)</a>
+        <a href="../ecommerce-roas-profit-calculator/">E-com ROAS (EN)</a>
+        <a href="../calcolatore-roas-ecommerce/">ROAS E-com (IT)</a>
+        <a href="../etf-compound-fire-calculator/">ETF FIRE (EN)</a>
+        <a href="../calcolatore-pac-etf/">PAC ETF (IT)</a>
+      </nav>
+    </header>
+    
+    
+        <section class="hero">
+          <span class="pill" style="background:rgba(2,132,199,0.18);color:#38bdf8;border-color:rgba(56,189,248,0.4);">Strumento Gratuito • Shopify, WooCommerce &amp; Amazon</span>
+          <h1>Calcolatore ROAS di Pareggio &amp; Profitto E-commerce</h1>
+          <p class="lead">Inserisci prezzo, costo merce (COGS), spedizione, commissioni Stripe/PayPal e budget Ads: scopri subito il <strong>Break-Even ROAS</strong>, il <strong>CPA massimo</strong> e l'<strong>utile netto reale</strong>.</p>
+        </section>
+        <div class="grid-2">
+          <div class="card">
+            <h2>1. Margini Ordine &amp; Budget Ads</h2>
+            <div class="preset-row">
+              <button class="preset-btn active" type="button" onclick="applyEcomPreset(58,13,7.5,1.8,4,this)">DTC Brand (€58 AOV)</button>
+              <button class="preset-btn" type="button" onclick="applyEcomPreset(39,9,6.5,2.5,5,this)">Dropshipping (€39)</button>
+              <button class="preset-btn" type="button" onclick="applyEcomPreset(95,24,8.5,1.8,3,this)">High-Ticket (€95)</button>
+            </div>
+            <div class="field"><label>Valore Medio Ordine / AOV (€) <span class="hint" id="lbl_aov"></span></label>
+              <input type="number" id="aov" value="58" min="5" max="2000" step="1">
+              <input type="range" id="aov_r" value="58" min="15" max="300" step="1">
+            </div>
+            <div class="field"><label>Costo Merce (COGS) per Ordine (€)</label>
+              <input type="number" id="cogs" value="13" min="0" max="1000" step="0.5">
+            </div>
+            <div class="field"><label>Spedizione + Packaging (€)</label>
+              <input type="number" id="ship" value="7.5" min="0" max="200" step="0.5">
+            </div>
+            <div class="field"><label>Commissione Pagamenti (%) <span class="hint">Stripe 1,5%–2,9% • PayPal 3,4%</span></label>
+              <input type="number" id="pay" value="1.8" min="0" max="15" step="0.1">
+            </div>
+            <div class="field"><label>Tasso Resi / Rimborsi (%)</label>
+              <input type="number" id="ref" value="4" min="0" max="40" step="0.5">
+            </div>
+            <div class="field"><label>Budget Ads Mensile (€)</label>
+              <input type="number" id="ad" value="3000" min="0" max="500000" step="100">
+            </div>
+            <div class="field"><label>ROAS Atteso (es. 3,0 = 3,0x) <span class="hint" id="lbl_roas"></span></label>
+              <input type="number" id="roas" value="3.0" min="0.5" max="20" step="0.1">
+              <input type="range" id="roas_r" value="3.0" min="1.0" max="8.0" step="0.1">
+            </div>
+            <div class="field"><label>Costi Fissi Mensili Store (€) <span class="hint">Shopify, app, logistica, team</span></label>
+              <input type="number" id="fixed" value="1100" min="0" max="100000" step="50">
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>2. Risultati ROAS, CPA &amp; Profitto Mensile</h2>
+            <div class="kpi-grid">
+              <div class="kpi"><div class="lbl">ROAS Minimo Pareggio</div><div class="val" id="out_be">—</div><div class="sub">Mai scalare sotto questo ROAS</div></div>
+              <div class="kpi"><div class="lbl">CPA Massimo Sostenibile</div><div class="val" id="out_cpa">—</div><div class="sub" id="out_cmp">—</div></div>
+              <div class="kpi"><div class="lbl">Utile Operativo / Mese</div><div class="val" id="out_net">—</div><div class="sub" id="out_nm">—</div></div>
+              <div class="kpi warn"><div class="lbl">Fatturato Netto / Mese</div><div class="val" id="out_rev">—</div><div class="sub" id="out_ord">—</div></div>
+            </div>
+            <div class="alert-bar" id="roas_alert">—</div>
+            <div class="bar-wrap">
+              <div class="bar-track">
+                <div class="bar-seg" id="seg_net" style="background:#10b981;"></div>
+                <div class="bar-seg" id="seg_ads" style="background:#f59e0b;"></div>
+                <div class="bar-seg" id="seg_var" style="background:#38bdf8;"></div>
+                <div class="bar-seg" id="seg_fix" style="background:#64748b;"></div>
+              </div>
+              <div class="legend">
+                <span><i class="dot" style="background:#10b981"></i>Utile Operativo</span>
+                <span><i class="dot" style="background:#f59e0b"></i>Spesa Ads</span>
+                <span><i class="dot" style="background:#38bdf8"></i>COGS + Sped. + Fee</span>
+                <span><i class="dot" style="background:#64748b"></i>Costi Fissi</span>
+              </div>
+            </div>
+            <table class="breakdown">
+              <tr><td>Fatturato Netto Stimato (dopo resi)</td><td id="t_rev">—</td></tr>
+              <tr><td>Costi Variabili Ordini (COGS + Sped. + Fee)</td><td id="t_var">—</td></tr>
+              <tr><td>Margine di Contribuzione Pre-Ads</td><td id="t_cm">—</td></tr>
+              <tr><td>Budget Pubblicitario (Ads)</td><td id="t_ads">—</td></tr>
+              <tr><td>Costi Fissi Mensili Store</td><td id="t_fix">—</td></tr>
+              <tr><td><strong>Utile Operativo Mensile</strong></td><td id="t_net">—</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <section class="cta-box" style="background:linear-gradient(135deg,rgba(2,132,199,0.22),rgba(15,23,42,0.95));border-color:#0284c7;">
+          <div>
+            <h3>Gestisci più SKU e Campagne Meta/Google/TikTok? Passa al Gestionale E-commerce Pro</h3>
+            <p>8 fogli Excel &amp; Google Sheets già collegati: catalogo 20 SKU con ROAS di pareggio automatico, lookup COGS/spedizioni, Conto Economico Gen–Dic, MER globale e Matrice Scaling 5×5. Zero abbonamenti.</p>
+          </div>
+          <a class="cta-btn" style="background:#0284c7;color:#fff;" href="https://sengir.gumroad.com/l/gestionale-ecommerce-roas-pro" target="_blank" rel="noopener">Scarica Gestionale E-commerce Pro (€29,90) →</a>
+        </section>
+
+        <section class="faq">
+          <h2>Domande Frequenti su ROAS e Margini E-commerce</h2>
+          <details><summary>Come si calcola il ROAS di pareggio (Break-Even ROAS)?</summary><p>Il ROAS di pareggio è 1 diviso il Margine di Contribuzione % (al netto di COGS, spedizione, packaging, commissioni pagamento e resi). Se il tuo margine è 50%, il Break-Even ROAS è 2,0x: sotto 2,0x perdi soldi ad ogni vendita.</p></details><details><summary>Cos'è il CPA Massimo sostenibile?</summary><p>È esattamente il margine in euro che ti resta su un ordine prima della spesa pubblicitaria. Se il tuo CPA su Meta/TikTok/Google supera quella cifra, la campagna è in perdita.</p></details><details><summary>Perché guardare il MER oltre al ROAS di Meta?</summary><p>Il MER (Vendite Nette / Spesa Ads Totale) misura l'efficienza reale su tutto il negozio senza essere falsato dall'attribuzione ottimistica delle piattaforme pubblicitarie.</p></details>
+        </section>
+        
+    <footer>
+      <span>© 2026 SheetCraft Studio — Free Client-Side Financial Calculators</span>
+      <span>Strumento informativo: non sostituisce un commercialista.</span>
+    </footer>
+  </div>
+  <script>
+    const IS_IT = true;
+    const CURR = '€';
+    const fmt = n => (n < 0 ? '-' : '') + CURR + Math.round(Math.abs(n)).toLocaleString(IS_IT ? 'it-IT' : 'en-US');
+    const fmt2 = n => (n < 0 ? '-' : '') + CURR + Math.abs(n).toFixed(2);
+    const el = id => document.getElementById(id);
+
+    function sync(a, b) {
+      el(a).addEventListener('input', () => { el(b).value = el(a).value; calc(); });
+      el(b).addEventListener('input', () => { el(a).value = el(b).value; calc(); });
+    }
+    sync('aov', 'aov_r');
+    sync('roas', 'roas_r');
+    ['cogs', 'ship', 'pay', 'ref', 'ad', 'fixed'].forEach(id => el(id).addEventListener('input', calc));
+
+    function applyEcomPreset(aov, cogs, ship, pay, ref, btn) {
+      el('aov').value = aov; el('aov_r').value = aov;
+      el('cogs').value = cogs; el('ship').value = ship;
+      el('pay').value = pay; el('ref').value = ref;
+      document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      calc();
+    }
+
+    function calc() {
+      const aov = Math.max(1, +el('aov').value || 1);
+      const cogs = Math.max(0, +el('cogs').value || 0);
+      const ship = Math.max(0, +el('ship').value || 0);
+      const pay = Math.max(0, Math.min(30, +el('pay').value || 0)) / 100;
+      const ref = Math.max(0, Math.min(60, +el('ref').value || 0)) / 100;
+      const ad = Math.max(0, +el('ad').value || 0);
+      const roas = Math.max(0.1, +el('roas').value || 1);
+      const fixed = Math.max(0, +el('fixed').value || 0);
+
+      const netPerOrd = aov * (1 - ref);
+      const payFee = netPerOrd * pay;
+      const cmPerOrd = netPerOrd - cogs - ship - payFee;
+      const cmPct = cmPerOrd / aov;
+      const beRoas = cmPct > 0 ? (1 / cmPct) : 99;
+
+      const grossSales = ad * roas;
+      const netSales = grossSales * (1 - ref);
+      const orders = aov > 0 ? (grossSales / aov) : 0;
+      const varCosts = orders * (cogs + ship + payFee);
+      const cmTotal = netSales - varCosts;
+      const netProfit = cmTotal - ad - fixed;
+      const netMargin = netSales > 0 ? (netProfit / netSales) * 100 : 0;
+
+      el('lbl_aov').textContent = fmt2(aov);
+      el('lbl_roas').textContent = roas.toFixed(1) + 'x';
+      el('out_be').textContent = cmPct > 0 ? (beRoas.toFixed(2) + 'x') : 'N/A';
+      el('out_cpa').textContent = fmt2(cmPerOrd);
+      el('out_cmp').textContent = (cmPct * 100).toFixed(1) + '% ' + (IS_IT ? 'margine contribuzione' : 'contribution margin');
+      el('out_net').textContent = fmt(netProfit);
+      el('out_net').style.color = netProfit >= 0 ? '#34d399' : '#f87171';
+      el('out_nm').textContent = netMargin.toFixed(1) + '% ' + (IS_IT ? 'margine operativo' : 'operating margin');
+      el('out_rev').textContent = fmt(netSales);
+      el('out_ord').textContent = '~' + Math.round(orders).toLocaleString() + (IS_IT ? ' ordini/mese' : ' orders/mo');
+
+      const ab = el('roas_alert');
+      ab.className = 'alert-bar';
+      if (netProfit < 0) {
+        ab.classList.add('danger');
+        ab.textContent = IS_IT
+          ? ('IN PERDITA: Con ROAS ' + roas.toFixed(1) + 'x non copri Ads + Costi Fissi (Break-Even Ads: ' + beRoas.toFixed(2) + 'x).')
+          : ('LOSING MONEY: At ' + roas.toFixed(1) + 'x ROAS, margins do not cover Ads + Fixed Overhead (BE-ROAS: ' + beRoas.toFixed(2) + 'x).');
+      } else if (roas < beRoas * 1.25) {
+        ab.classList.add('warn');
+        ab.textContent = IS_IT
+          ? ('MARGINE SOTTILE: Sei vicino al ROAS di pareggio (' + beRoas.toFixed(2) + 'x). Alza AOV o riduci COGS prima di scalare.')
+          : ('THIN MARGIN: Close to Break-Even ROAS (' + beRoas.toFixed(2) + 'x). Raise AOV or trim COGS before scaling spend.');
+      } else {
+        ab.textContent = IS_IT
+          ? ('SCALABILE IN PROFITTO: Margine sano di +' + ((roas - beRoas)).toFixed(2) + 'x sopra il Break-Even ROAS!')
+          : ('PROFITABLE TO SCALE: Healthy +' + ((roas - beRoas)).toFixed(2) + 'x cushion above Break-Even ROAS!');
+      }
+
+      el('t_rev').textContent = fmt(netSales);
+      el('t_var').textContent = '-' + fmt(varCosts);
+      el('t_cm').textContent = fmt(cmTotal);
+      el('t_ads').textContent = '-' + fmt(ad);
+      el('t_fix').textContent = '-' + fmt(fixed);
+      el('t_net').textContent = fmt(netProfit);
+
+      const tot = Math.max(netSales, varCosts + ad + fixed, 1);
+      el('seg_net').style.width = Math.max(0, (netProfit / tot) * 100) + '%';
+      el('seg_ads').style.width = ((ad / tot) * 100) + '%';
+      el('seg_var').style.width = ((varCosts / tot) * 100) + '%';
+      el('seg_fix').style.width = ((fixed / tot) * 100) + '%';
+    }
+    calc();
+    </script>
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="uT2_jkZMImXVB3RG_87C-Wll_ms9dv8wtORV2BLJJ-I" />
+  <title>Free ETF Compound Interest, DCA & FIRE Calculator (After Tax & Inflation 2026)</title>
+  <meta name="description" content="Simulate lump-sum + monthly ETF DCA investing over 1–40 years with expense ratios, capital gains tax, inflation-adjusted purchasing power, and 4% rule FIRE passive income.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://simkena2026-bot.github.io/sheetcraft-tools/etf-compound-fire-calculator/">
+  <link rel="alternate" hreflang="it" href="https://simkena2026-bot.github.io/sheetcraft-tools/calcolatore-pac-etf/">
+  <meta property="og:title" content="Free ETF Compound Interest, DCA & FIRE Calculator (After Tax & Inflation 2026)">
+  <meta property="og:description" content="Simulate lump-sum + monthly ETF DCA investing over 1–40 years with expense ratios, capital gains tax, inflation-adjusted purchasing power, and 4% rule FIRE passive income.">
+  <meta property="og:type" content="website">
+  <style>
+:root {
+  --bg: #0b1120;
+  --surface: #111827;
+  --card: #1e293b;
+  --border: #334155;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --primary: #10b981;
+  --primary-dark: #059669;
+  --indigo: #6366f1;
+  --warn: #f59e0b;
+  --danger: #ef4444;
+  --radius: 14px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+  background: radial-gradient(circle at top right, #1e293b 0%, var(--bg) 52%);
+  color: var(--text);
+  line-height: 1.55;
+  min-height: 100vh;
+}
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 24px 20px 64px; }
+header.nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 0 28px; border-bottom: 1px solid rgba(148,163,184,0.16);
+  flex-wrap: wrap; gap: 12px;
+}
+.brand { font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em; display: flex; align-items: center; gap: 10px; }
+.brand-dot { width: 12px; height: 12px; border-radius: 4px; background: var(--accent, var(--primary)); display: inline-block; }
+.nav-links { display: flex; gap: 14px; flex-wrap: wrap; font-size: 0.9rem; color: var(--muted); }
+.nav-links a:hover { color: var(--text); }
+.hero { padding: 34px 0 24px; }
+.pill {
+  display: inline-block; padding: 5px 12px; border-radius: 999px; font-size: 0.78rem; font-weight: 700;
+  background: rgba(16,185,129,0.14); color: var(--accent, var(--primary)); border: 1px solid rgba(16,185,129,0.35);
+  margin-bottom: 12px; letter-spacing: 0.03em; text-transform: uppercase;
+}
+h1 { font-size: clamp(1.75rem, 3.6vw, 2.7rem); line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 12px; }
+.lead { color: var(--muted); font-size: 1.05rem; max-width: 740px; }
+.grid-2 { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 24px; margin-top: 24px; }
+@media (max-width: 860px) { .grid-2 { grid-template-columns: 1fr; } }
+.card {
+  background: rgba(30, 41, 59, 0.78); backdrop-filter: blur(8px);
+  border: 1px solid var(--border); border-radius: var(--radius); padding: 22px;
+}
+.card h2 { font-size: 1.08rem; margin-bottom: 16px; color: #e2e8f0; display: flex; justify-content: space-between; align-items: center; }
+.field { margin-bottom: 14px; }
+.field label { display: flex; justify-content: space-between; font-size: 0.88rem; color: #cbd5e1; margin-bottom: 5px; font-weight: 600; }
+.field .hint { font-size: 0.78rem; color: var(--muted); font-weight: 400; }
+input[type="number"], select {
+  width: 100%; background: #0f172a; color: var(--text); border: 1px solid var(--border);
+  border-radius: 9px; padding: 10px 12px; font-size: 0.98rem; font-weight: 600;
+}
+input[type="number"]:focus, select:focus { outline: none; border-color: var(--accent, var(--primary)); }
+input[type="range"] { width: 100%; accent-color: var(--accent, var(--primary)); margin-top: 6px; cursor: pointer; }
+.preset-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.preset-btn {
+  background: #0f172a; color: #cbd5e1; border: 1px solid var(--border); border-radius: 8px;
+  padding: 6px 11px; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: 0.15s;
+}
+.preset-btn:hover, .preset-btn.active { border-color: var(--accent, var(--primary)); color: #fff; background: rgba(16,185,129,0.16); }
+.kpi-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-bottom: 18px; }
+.kpi {
+  background: #0f172a; border: 1px solid var(--border); border-radius: 11px; padding: 14px;
+  border-top: 3px solid var(--accent, var(--primary));
+}
+.kpi.warn { border-top-color: var(--warn); }
+.kpi.danger { border-top-color: var(--danger); }
+.kpi .lbl { font-size: 0.74rem; color: var(--muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.04em; }
+.kpi .val { font-size: 1.55rem; font-weight: 800; margin-top: 4px; letter-spacing: -0.02em; }
+.kpi .sub { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+.bar-wrap { margin: 16px 0; }
+.bar-track { display: flex; height: 18px; border-radius: 999px; overflow: hidden; background: #0f172a; border: 1px solid var(--border); }
+.bar-seg { height: 100%; transition: width 0.25s ease; }
+.legend { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 8px; font-size: 0.8rem; color: #cbd5e1; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.dot { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+.breakdown { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 0.9rem; }
+.breakdown td { padding: 8px 4px; border-bottom: 1px solid rgba(148,163,184,0.14); }
+.breakdown td:last-child { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+.cta-box {
+  margin-top: 26px; background: linear-gradient(135deg, rgba(16,185,129,0.18), rgba(15,23,42,0.95));
+  border: 1px solid var(--accent, var(--primary)); border-radius: var(--radius); padding: 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+}
+.cta-box h3 { font-size: 1.25rem; margin-bottom: 6px; }
+.cta-box p { color: #cbd5e1; font-size: 0.94rem; max-width: 640px; }
+.cta-btn {
+  display: inline-block; background: var(--accent, var(--primary)); color: #052e16;
+  font-weight: 800; padding: 13px 22px; border-radius: 10px; font-size: 0.96rem;
+  white-space: nowrap; transition: transform 0.15s;
+}
+.cta-btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
+.cta-btn.indigo-btn { background: var(--indigo); color: #fff; }
+.faq { margin-top: 38px; }
+.faq h2 { font-size: 1.35rem; margin-bottom: 14px; }
+details {
+  background: rgba(30,41,59,0.65); border: 1px solid var(--border); border-radius: 10px;
+  padding: 14px 16px; margin-bottom: 10px;
+}
+summary { font-weight: 700; cursor: pointer; }
+details p { color: #cbd5e1; margin-top: 8px; font-size: 0.92rem; }
+footer {
+  margin-top: 48px; padding-top: 20px; border-top: 1px solid rgba(148,163,184,0.16);
+  color: var(--muted); font-size: 0.84rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+}
+.hub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin-top: 24px; }
+.hub-card {
+  background: rgba(30,41,59,0.8); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 22px; display: flex; flex-direction: column; justify-content: space-between; gap: 14px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.hub-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+.hub-tag { font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--primary); }
+.hub-card h3 { font-size: 1.15rem; margin-top: 6px; }
+.hub-card p { font-size: 0.9rem; color: var(--muted); }
+.hub-go { font-weight: 700; font-size: 0.9rem; color: #34d399; }
+.alert-bar { margin-top: 10px; padding: 10px 12px; border-radius: 9px; font-size: 0.85rem; font-weight: 600; background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.35); color: #a7f3d0; }
+.alert-bar.warn { background: rgba(245,158,11,0.14); border-color: rgba(245,158,11,0.45); color: #fde68a; }
+.alert-bar.danger { background: rgba(239,68,68,0.15); border-color: rgba(239,68,68,0.5); color: #fecaca; }
+ :root { --accent: #d97706; }</style>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Free ETF Compound Interest, DCA & FIRE Calculator (After Tax & Inflation 2026)", "url": "https://simkena2026-bot.github.io/sheetcraft-tools/etf-compound-fire-calculator/", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How does monthly DCA compounding work?", "acceptedAnswer": {"@type": "Answer", "text": "Investing a fixed dollar amount every month automatically buys more shares when markets dip and compounds returns on both your principal and past gains."}}, {"@type": "Question", "name": "Why adjust future portfolio value for inflation?", "acceptedAnswer": {"@type": "Answer", "text": "Because inflation erodes purchasing power every year, looking at Inflation-Adjusted Real Value shows what your future nest egg is truly worth in today's dollars."}}, {"@type": "Question", "name": "What is the 4% Safe Withdrawal Rule (FIRE)?", "acceptedAnswer": {"@type": "Answer", "text": "The 4% rule estimates you can withdraw 4% of a diversified stock/bond portfolio annually (divided by 12 for monthly income) for long-term financial independence."}}]}]}</script>
+</head>
+<body>
+  <div class="wrap">
+    
+    <header class="nav">
+      <a class="brand" href="../index.html"><span class="brand-dot"></span>SheetCraft Studio</a>
+      <nav class="nav-links">
+        <a href="../airbnb-profit-calculator/">Airbnb (EN)</a>
+        <a href="../calcolatore-affitti-brevi/">Affitti Brevi (IT)</a>
+        <a href="../freelance-tax-profit-calculator/">Freelance (EN)</a>
+        <a href="../calcolatore-regime-forfettario/">Forfettario (IT)</a>
+        <a href="../ecommerce-roas-profit-calculator/">E-com ROAS (EN)</a>
+        <a href="../calcolatore-roas-ecommerce/">ROAS E-com (IT)</a>
+        <a href="../etf-compound-fire-calculator/">ETF FIRE (EN)</a>
+        <a href="../calcolatore-pac-etf/">PAC ETF (IT)</a>
+      </nav>
+    </header>
+    
+    
+        <section class="hero">
+          <span class="pill" style="background:rgba(217,119,6,0.18);color:#fbbf24;border-color:rgba(251,191,36,0.4);">Free Tool • Index Investing &amp; FIRE</span>
+          <h1>ETF Compound Interest &amp; FIRE Calculator</h1>
+          <p class="lead">Model lump-sum + monthly ETF investing over up to 40 years — see <strong>after-tax wealth</strong>, <strong>inflation-adjusted purchasing power</strong>, and your <strong>4% rule monthly passive income</strong>.</p>
+        </section>
+        <div class="grid-2">
+          <div class="card">
+            <h2>1. Investment &amp; Tax Parameters</h2>
+            <div class="preset-row">
+              <button class="preset-btn active" type="button" onclick="applyPacPreset(8.0,15,0.08,this)">100% Index ETF (VTI/VT)</button>
+              <button class="preset-btn" type="button" onclick="applyPacPreset(6.5,15,0.10,this)">80/20 Growth Mix</button>
+              <button class="preset-btn" type="button" onclick="applyPacPreset(5.2,15,0.12,this)">60/40 Balanced</button>
+            </div>
+            <div class="field"><label>Initial Lump Sum ($)</label>
+              <input type="number" id="init" value="15000" min="0" max="5000000" step="500">
+            </div>
+            <div class="field"><label>Monthly Contribution / DCA ($) <span class="hint" id="lbl_mo"></span></label>
+              <input type="number" id="mo" value="1000" min="0" max="50000" step="50">
+              <input type="range" id="mo_r" value="1000" min="100" max="5000" step="50">
+            </div>
+            <div class="field"><label>Investment Horizon (Years) <span class="hint" id="lbl_yrs"></span></label>
+              <input type="number" id="yrs" value="25" min="1" max="45" step="1">
+              <input type="range" id="yrs_r" value="25" min="1" max="40" step="1">
+            </div>
+            <div class="field"><label>Expected Annual Gross Return (%)</label>
+              <input type="number" id="ret" value="8.0" min="0" max="20" step="0.1">
+            </div>
+            <div class="field"><label>Capital Gains Tax at Exit (%) <span class="hint">e.g. 15% US Long-Term</span></label>
+              <input type="number" id="cgt" value="15" min="0" max="45" step="0.5">
+            </div>
+            <div class="field"><label>Annual ETF Expense Ratio / Fee (%)</label>
+              <input type="number" id="drag" value="0.08" min="0" max="5" step="0.02">
+            </div>
+            <div class="field"><label>Expected Annual Inflation (%)</label>
+              <input type="number" id="inf" value="2.5" min="0" max="10" step="0.1">
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>2. Projected Wealth &amp; FIRE Income</h2>
+            <div class="kpi-grid">
+              <div class="kpi"><div class="lbl">Net Portfolio (After Tax)</div><div class="val" id="out_net">—</div><div class="sub" id="out_mult">—</div></div>
+              <div class="kpi"><div class="lbl">Real Value (Today's $)</div><div class="val" id="out_real">—</div><div class="sub">After tax &amp; inflation</div></div>
+              <div class="kpi warn"><div class="lbl">Est. Capital Gains Tax</div><div class="val" id="out_tax">—</div><div class="sub" id="out_gain">—</div></div>
+              <div class="kpi"><div class="lbl">Monthly 4% Rule Income</div><div class="val" id="out_swr">—</div><div class="sub">Safe withdrawal on net wealth</div></div>
+            </div>
+            <div class="bar-wrap">
+              <div class="bar-track">
+                <div class="bar-seg" id="seg_cap" style="background:#38bdf8;"></div>
+                <div class="bar-seg" id="seg_gain" style="background:#10b981;"></div>
+                <div class="bar-seg" id="seg_tax" style="background:#f59e0b;"></div>
+              </div>
+              <div class="legend">
+                <span><i class="dot" style="background:#38bdf8"></i>Total Contributed</span>
+                <span><i class="dot" style="background:#10b981"></i>Net Compounding Gain</span>
+                <span><i class="dot" style="background:#f59e0b"></i>Capital Gains Tax</span>
+              </div>
+            </div>
+            <table class="breakdown">
+              <tr><td>Total Capital Contributed</td><td id="t_cap">—</td></tr>
+              <tr><td>Projected Gross Value (After Fees)</td><td id="t_gross">—</td></tr>
+              <tr><td>Total Gross Compounding Gain</td><td id="t_gain">—</td></tr>
+              <tr><td>Estimated Exit Capital Gains Tax</td><td id="t_tax">—</td></tr>
+              <tr><td><strong>Net Take-Home Portfolio</strong></td><td id="t_net">—</td></tr>
+              <tr><td>Purchasing Power in Today's Dollars</td><td id="t_real">—</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <section class="cta-box" style="background:linear-gradient(135deg,rgba(217,119,6,0.22),rgba(15,23,42,0.95));border-color:#d97706;">
+          <div>
+            <h3>Track 50/30/20 Budget, Net Worth &amp; Auto-Rebalance ETFs in One Sheet</h3>
+            <p>Upgrade to <strong>Wealth, Budget &amp; ETF FIRE OS Pro</strong> (8 linked Excel &amp; Google Sheets tabs): 12-month budget &amp; savings rate, monthly Net Worth tracker, automatic Buy/Sell ETF Rebalancer &amp; 30-Year FIRE Simulator. Pay once, own forever.</p>
+          </div>
+          <a class="cta-btn" style="background:#f59e0b;color:#0f172a;" href="https://sengir.gumroad.com/l/wealth-budget-etf-fire-os-en" target="_blank" rel="noopener">Get Wealth &amp; FIRE OS Pro ($19.90) →</a>
+        </section>
+
+        <section class="faq">
+          <h2>Frequently Asked Questions</h2>
+          <details><summary>How does monthly DCA compounding work?</summary><p>Investing a fixed dollar amount every month automatically buys more shares when markets dip and compounds returns on both your principal and past gains.</p></details><details><summary>Why adjust future portfolio value for inflation?</summary><p>Because inflation erodes purchasing power every year, looking at Inflation-Adjusted Real Value shows what your future nest egg is truly worth in today's dollars.</p></details><details><summary>What is the 4% Safe Withdrawal Rule (FIRE)?</summary><p>The 4% rule estimates you can withdraw 4% of a diversified stock/bond portfolio annually (divided by 12 for monthly income) for long-term financial independence.</p></details>
+        </section>
+        
+    <footer>
+      <span>© 2026 SheetCraft Studio — Free Client-Side Financial Calculators</span>
+      <span>Informational tool only — not formal tax or accounting advice.</span>
+    </footer>
+  </div>
+  <script>
+    const IS_IT = false;
+    const CURR = '$';
+    const fmt = n => (n < 0 ? '-' : '') + CURR + Math.round(Math.abs(n)).toLocaleString(IS_IT ? 'it-IT' : 'en-US');
+    const el = id => document.getElementById(id);
+
+    function sync(a, b) {
+      el(a).addEventListener('input', () => { el(b).value = el(a).value; calc(); });
+      el(b).addEventListener('input', () => { el(a).value = el(b).value; calc(); });
+    }
+    sync('mo', 'mo_r');
+    sync('yrs', 'yrs_r');
+    ['init', 'ret', 'cgt', 'drag', 'inf'].forEach(id => el(id).addEventListener('input', calc));
+
+    function applyPacPreset(ret, cgt, drag, btn) {
+      el('ret').value = ret; el('cgt').value = cgt; el('drag').value = drag;
+      document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      calc();
+    }
+
+    function calc() {
+      const init = Math.max(0, +el('init').value || 0);
+      const mo = Math.max(0, +el('mo').value || 0);
+      const yrs = Math.max(1, Math.min(50, +el('yrs').value || 1));
+      const ret = (+el('ret').value || 0) / 100;
+      const cgt = Math.max(0, Math.min(60, +el('cgt').value || 0)) / 100;
+      const drag = Math.max(0, Math.min(10, +el('drag').value || 0)) / 100;
+      const inf = Math.max(0, Math.min(20, +el('inf').value || 0)) / 100;
+
+      const netAnnual = ret - drag;
+      let val = init;
+      let cap = init;
+      for (let y = 1; y <= yrs; y++) {
+        const annualC = mo * 12;
+        cap += annualC;
+        val = val * (1 + netAnnual) + annualC * (1 + netAnnual / 2);
+      }
+      const grossGain = Math.max(0, val - cap);
+      const tax = grossGain * cgt;
+      const netVal = val - tax;
+      const netGain = Math.max(0, netVal - cap);
+      const realVal = netVal / Math.pow(1 + inf, yrs);
+      const swrMo = (netVal * 0.04) / 12;
+      const mult = cap > 0 ? (netVal / cap) : 1;
+
+      el('lbl_mo').textContent = fmt(mo * 12) + (IS_IT ? '/anno' : '/yr');
+      el('lbl_yrs').textContent = yrs + (IS_IT ? ' anni' : ' yrs');
+      el('out_net').textContent = fmt(netVal);
+      el('out_mult').textContent = mult.toFixed(2) + 'x ' + (IS_IT ? 'il capitale versato' : 'capital contributed');
+      el('out_real').textContent = fmt(realVal);
+      el('out_tax').textContent = fmt(tax);
+      el('out_gain').textContent = (IS_IT ? 'Guadagno netto: ' : 'Net gain: ') + fmt(netGain);
+      el('out_swr').textContent = fmt(swrMo) + (IS_IT ? '/mese' : '/mo');
+
+      el('t_cap').textContent = fmt(cap);
+      el('t_gross').textContent = fmt(val);
+      el('t_gain').textContent = '+' + fmt(grossGain);
+      el('t_tax').textContent = '-' + fmt(tax);
+      el('t_net').textContent = fmt(netVal);
+      el('t_real').textContent = fmt(realVal);
+
+      const tot = Math.max(val, 1);
+      el('seg_cap').style.width = ((cap / tot) * 100) + '%';
+      el('seg_gain').style.width = ((netGain / tot) * 100) + '%';
+      el('seg_tax').style.width = ((tax / tot) * 100) + '%';
+    }
+    calc();
+    </script>
+</body>
+</html>
